@@ -51,7 +51,7 @@ def state_in_queue(node,my_queue):
 def h1 (list,goal_list):
     sum=0
     for item in list:
-        sum=sum+ 1  if list.index(item)  else 0
+        sum=sum+ 1  if list.index(item)!= goal_list.index(item)  else 0
     return sum
 
 
