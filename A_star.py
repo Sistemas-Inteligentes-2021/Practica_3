@@ -1,6 +1,8 @@
 from os import read
 from numpy import genfromtxt
 from queue import PriorityQueue
+from numpy.lib.scimath import sqrt
+from tabulate import tabulate
 import time
 import copy
 
@@ -146,7 +148,26 @@ def show_path (path):
         for number in item:
             print(number,"  ",end="")
         print("]")
+        
+# Split list to display
+def split_list(my_list, wanted_parts):
+    length = len(my_list)
+    return [ my_list[i*length // wanted_parts: (i+1)*length // wanted_parts] 
+             for i in range(wanted_parts) ]
 
+# Display Array in Grid
+def display_array(array, n_parts):
+    item = split_list(array, n_parts)
+    table = tabulate(item, tablefmt="fancy_grid")
+    print(table)
+    print('\n')
+
+# Display Path in Grids
+def display_path(path, n_parts):
+    for item in path:
+        display_array(item,n_parts)
+
+# Read from Data
 def read_from_csv (size):
     file='Data/Data_'+str(size)+'Puzzle.csv'
     data = genfromtxt(file, usecols= range(1, size+2) , delimiter=",", dtype=int)
@@ -157,6 +178,7 @@ def read_from_csv (size):
 # State consist of a list of 16 numbers(0 to 15) tahth indicates the position of each box. Being the 0 the blank space
 if __name__ == '__main__':
     n=int(input('Insert the size of Puzzle: '))
+    n_parts=int(sqrt(n+1))
     start_time = time.time()
     initial_state, goal_state = read_from_csv(n) # We define the goal and initial state
     actions=['L','U','R','D'] # We define the actions LURD (Left, Up, Right, Down) 
