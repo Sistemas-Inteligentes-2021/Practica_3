@@ -1,4 +1,5 @@
 from queue import PriorityQueue
+import copy
 import math
 q = PriorityQueue()
 
@@ -8,17 +9,20 @@ q.put((5, 'Write'))
 q.put((1, 'Code'))
 q.put((3, 'Study'))
 
+
+q2 = PriorityQueue()
+q2.queue = copy.deepcopy(q.queue)
+#for i in q1.queue: q2.put(i)
+
+q2.put((8, 'Brian'))
+
+
 while not q.empty():
     next_item = q.get()
     print(next_item[1])
 
+print("---------------------------------------------")
 
-a=[1,2,3,4,5,6,7,8,9]
-
-
-for i in a:
-    print(i)
-    if i % 2 ==0 :
-        print("1 if")
-        if i % 3 ==0 :
-            run_code
+while not q2.empty():
+    next_item = q2.get()
+    print(next_item[1])
