@@ -48,6 +48,14 @@ def state_in_queue(node,my_queue):
             return actualNode
     return None
 
+def h1 (list,goal_list):
+    sum=0
+    for item in list:
+        sum=sum+ 1  if list.index(item)!= goal_list.index(item)  else 0
+    return sum
+
+
+
 # Transition function expect a state and an action and will return the possible succesor state in base of the action
 def TF(state, action,path,n):
     resulList=[]
