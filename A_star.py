@@ -105,7 +105,7 @@ def A_star(initial_state, actions, goal_state,n):
                 state_counter=state_counter+1
                 if list_in_lists(sucessor.list,closed):
                     continue
-                sucessor.h=h1(sucessor.list) #Aqui va nuestra funcion heuristica
+                sucessor.h=h1(sucessor.list,goal_state) #Aqui va nuestra funcion heuristica
                 sucessor.g=state.g+1
                 sucessor.f=sucessor.h+sucessor.g
                 sucessor.setFather(state)
@@ -163,4 +163,3 @@ if __name__ == '__main__':
     print("--- Time: %s seconds ---" % (time.time() - start_time))
 
 
-#https://stackoverflow.com/questions/32488533/how-to-clone-a-queue-in-python
