@@ -112,17 +112,18 @@ def show_path (path):
             print(number,"  ",end="")
         print("]")
 
-def read_from_csv ():
-    data = genfromtxt('Data_Files/Data_15_Puzzle.csv', usecols= range(1, 17) , delimiter=",", dtype=int)
+def read_from_csv (size):
+    file='Data/Data_'+str(size)+'Puzzle.csv'
+    data = genfromtxt(file, usecols= range(1, size+2) , delimiter=",", dtype=int)
     initial_state_parsed = [x for x in data[0]]
     goal_state_parsed = [x for x in data[1]]
     return initial_state_parsed, goal_state_parsed
 
 # State consist of a list of 16 numbers(0 to 15) tahth indicates the position of each box. Being the 0 the blank space
 if __name__ == '__main__':
-    n=input("Escriba el n del puzzle n x n")
+    n=int(input('Insert the size of Puzzle: '))
     start_time = time.time()
-    initial_state, goal_state = read_from_csv() # We define the goal and initial state
+    initial_state, goal_state = read_from_csv(n) # We define the goal and initial state
     actions=['L','U','R','D'] # We define the actions LURD (Left, Up, Right, Down) 
     first_node=State()  # Define Initial State
     first_node.setList(initial_state)
