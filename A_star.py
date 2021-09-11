@@ -2,12 +2,15 @@ from os import read
 from numpy import genfromtxt
 from queue import PriorityQueue
 import time
+import copy
 
 q = PriorityQueue()
 
 class State:
     def __init__(self):
         self.list=[]
+        self.g=0
+        self.h=0;self.f=0
         self.father=None
 
     def setList(self, list):
@@ -35,6 +38,15 @@ def list_in_lists(single_lis, set_lists):
         if compare(singleState,single_lis):
             return True
     return False
+
+def state_in_queue(node,my_queue):
+    q = PriorityQueue()
+    q.queue = copy.deepcopy(my_queue.queue)
+    while not q.empty():
+        actualNode=q.get()
+        if compare(node.list,actualNode[1].list):
+            return actualNode
+    return None
 
 # Transition function expect a state and an action and will return the possible succesor state in base of the action
 def TF(state, action,path,n):
@@ -78,11 +90,11 @@ def A_star(initial_state, actions, goal_state,n):
     path=[initial_state.list]
     closed=[]
     state_counter=1 #count the initial state 
-    q.put(initial_state,0)
+    q.put(0,initial_state)
     while not q.empty():
         state=q.get()
-        f=state[0]
-        state=state[1]
+        f=state[0] #obtengo la prioridad
+        state=state[1] #obtengo el nodo
         closed.append(state.list)
         if compare(goal_state,state.list):
             return state_counter,state,path
@@ -90,15 +102,18 @@ def A_star(initial_state, actions, goal_state,n):
             sucessor=State()
             sucessor.list=TF(state,action,path,n)
             if sucessor.list != None: #return none if the state cant expand or if it already exist
+                state_counter=state_counter+1
                 if list_in_lists(sucessor.list,closed):
                     continue
-                
-                
-                state_counter=state_counter+1
+                sucessor.h=h1(sucessor.list) #Aqui va nuestra funcion heuristica
+                sucessor.g=state.g+1
+                sucessor.f=sucessor.h+sucessor.g
                 sucessor.setFather(state)
-                if compare(goal_state,sucessor.list):
-                   return state_counter,sucessor,path
-                q.put(sucessor)
+                state_in_open=state_in_queue(sucessor,q)
+                if state_in_open!=None:
+                    if sucessor.g >= state_in_open.g:
+                        continue
+                q.put(sucessor.f, sucessor)
                 path.append(sucessor.list)
     return state_counter,None,path
 
@@ -127,6 +142,7 @@ if __name__ == '__main__':
     first_node=State()  # Define Initial State
     first_node.setList(initial_state)
     first_node.setFather(None)
+    first_node.g=0
     counter,objective,path=A_star(first_node,actions,goal_state,n)
 
     print("\nNumber of space states are:",counter)
@@ -147,3 +163,4 @@ if __name__ == '__main__':
     print("--- Time: %s seconds ---" % (time.time() - start_time))
 
 
+#https://stackoverflow.com/questions/32488533/how-to-clone-a-queue-in-python
