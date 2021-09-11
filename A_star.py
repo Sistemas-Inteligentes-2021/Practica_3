@@ -48,6 +48,14 @@ def state_in_queue(node,my_queue):
             return actualNode
     return None
 
+def h1 (list,goal_list):
+    sum=0
+    for item in list:
+        sum=sum+ 1  if list.index(item)  else 0
+    return sum
+
+
+
 # Transition function expect a state and an action and will return the possible succesor state in base of the action
 def TF(state, action,path,n):
     resulList=[]
@@ -105,7 +113,7 @@ def A_star(initial_state, actions, goal_state,n):
                 state_counter=state_counter+1
                 if list_in_lists(sucessor.list,closed):
                     continue
-                sucessor.h=h1(sucessor.list) #Aqui va nuestra funcion heuristica
+                sucessor.h=h1(sucessor.list,goal_state) #Aqui va nuestra funcion heuristica
                 sucessor.g=state.g+1
                 sucessor.f=sucessor.h+sucessor.g
                 sucessor.setFather(state)
@@ -163,4 +171,3 @@ if __name__ == '__main__':
     print("--- Time: %s seconds ---" % (time.time() - start_time))
 
 
-#https://stackoverflow.com/questions/32488533/how-to-clone-a-queue-in-python
