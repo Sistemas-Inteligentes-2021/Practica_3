@@ -54,6 +54,18 @@ def h1 (list,goal_list):
         sum=sum+ 1  if list.index(item)!= goal_list.index(item)  else 0
     return sum
 
+def h3 (list):
+    sum=0
+    for i in range(len(list)):
+        aux=i+1
+        if list[i] != 0:
+            while(aux<len(list)):
+                if list[aux] != 0:
+                    if list[i] > list[aux]:
+                        sum=sum+1                
+                aux=aux+1
+    return sum
+
 
 
 # Transition function expect a state and an action and will return the possible succesor state in base of the action
