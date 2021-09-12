@@ -56,6 +56,19 @@ def h1 (list,goal_list):
         sum=sum+ 1  if list.index(item)!= goal_list.index(item)  else 0
     return sum
 
+# Calculate Manhattan Distance
+# initial_state: Initial State from csv
+# n_parts: Dimensions of table
+def h2(initial_state, n_parts):
+    initial_config = initial_state
+    manhattan_distance = 0
+    for i,item in enumerate(initial_config):
+        if item != 0:
+            prev_row,prev_col = int(i/ n_parts) , i % n_parts
+            goal_row,goal_col = int(item /n_parts),item % n_parts
+            manhattan_distance += abs(prev_row-goal_row) + abs(prev_col - goal_col)
+    return manhattan_distance
+
 def h3 (list):
     sum=0
     for i in range(len(list)):

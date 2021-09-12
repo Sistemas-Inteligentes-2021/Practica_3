@@ -26,3 +26,27 @@ print("---------------------------------------------")
 while not q2.empty():
     next_item = q2.get()
     print(next_item[1])
+
+# #----- MANHATTAN H2 -----------
+# initial_state = [1,5,3,4,2,6,7,8,0]
+# goal_state = [0,1,2,3,4,5,6,7,8]
+
+# # Calculate Manhattan Distance
+# def h2(initial_state, n_parts):
+#     initial_config = initial_state
+#     manhattan_distance = 0
+#     for i,item in enumerate(initial_config):
+#         if item != 0:
+#             print('BREAK')
+#             print(i)
+#             print('Item:',item)
+#             prev_row,prev_col = int(i/ n_parts) , i % n_parts
+#             goal_row,goal_col = int(item /n_parts),item % n_parts
+#             manhattan_distance += abs(prev_row-goal_row) + abs(prev_col - goal_col)
+#             print('SUM')
+#             print(manhattan_distance)
+#             print('------------')
+#     return manhattan_distance
+
+# h_manhattan = h2(initial_state, 3)
+# print(h_manhattan)
