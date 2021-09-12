@@ -1,6 +1,7 @@
 from os import read
 from numpy import genfromtxt
 from queue import PriorityQueue
+from random import shuffle
 from numpy.lib.scimath import sqrt
 from tabulate import tabulate
 import time
@@ -50,15 +51,15 @@ def state_in_queue(node,my_queue):
             return actualNode
     return None
 
-def h1 (list,goal_list):
+def h1 (list,goal_list,n):
     sum=0
-    for item in list:
-        sum=sum+ 1  if list.index(item)!= goal_list.index(item)  else 0
+    for i in range(n):
+        print(i)
+        if list[i] != goal_list[i]:
+            sum=sum+1
     return sum
 
 # Calculate Manhattan Distance
-# initial_state: Initial State from csv
-# n_parts: Dimensions of table
 def h2(initial_state, n_parts):
     initial_config = initial_state
     manhattan_distance = 0
@@ -119,28 +120,36 @@ def TF(state, action,path,n):
     return None if list_in_lists(resulList,path) else resulList
 
 
+def best_option(list_Nodes):
+    f_values=[]
+    shuffle(list_Nodes)
+    for item in list_Nodes:
+        f_values.append(item.f)
+    index_f=f_values.index(min(f_values))
+    return list_Nodes[index_f]
+
 
 # Where the magic start,
-def A_star(initial_state, actions, goal_state,n):
-    path=[initial_state.list]
+def A_star(initial_state, actions, goal_state,n, n_parts):
+    
     closed=[]
     state_counter=1 #count the initial state 
-    q.put(0,initial_state)
+    q.put((0,initial_state))
     while not q.empty():
+        it_Nodes=[]
         state=q.get()
-        f=state[0] #obtengo la prioridad
         state=state[1] #obtengo el nodo
         closed.append(state.list)
         if compare(goal_state,state.list):
-            return state_counter,state,path
+            return state_counter,state,closed
         for action in actions:
             sucessor=State()
-            sucessor.list=TF(state,action,path,n)
+            sucessor.list=TF(state,action,closed,n_parts)
             if sucessor.list != None: #return none if the state cant expand or if it already exist
                 state_counter=state_counter+1
-                if list_in_lists(sucessor.list,closed):
-                    continue
-                sucessor.h=h1(sucessor.list,goal_state) #Aqui va nuestra funcion heuristica
+                # if list_in_lists(sucessor.list,closed):
+                #     continue
+                sucessor.h=h1(sucessor.list,goal_state,n) #Aqui va nuestra funcion heuristica
                 sucessor.g=state.g+1
                 sucessor.f=sucessor.h+sucessor.g
                 sucessor.setFather(state)
@@ -148,9 +157,12 @@ def A_star(initial_state, actions, goal_state,n):
                 if state_in_open!=None:
                     if sucessor.g >= state_in_open.g:
                         continue
-                q.put(sucessor.f, sucessor)
-                path.append(sucessor.list)
-    return state_counter,None,path
+                print(state_counter)
+                it_Nodes.append(sucessor)
+        sucessor=best_option(it_Nodes)
+        q.put((sucessor.f,sucessor))
+        closed.append(sucessor.list)                
+    return state_counter,None,closed
 
 
 
@@ -199,10 +211,13 @@ if __name__ == '__main__':
     first_node.setList(initial_state)
     first_node.setFather(None)
     first_node.g=0
-    counter,objective,path=A_star(first_node,actions,goal_state,n)
+    first_node.h=0
+    first_node.f=0
+
+    counter,objective,path=A_star(first_node,actions,goal_state,n,n_parts)
 
     print("\nNumber of space states are:",counter)
-    #show_path(path)
+    show_path(path)
     print("\n==============================\n")
     goal_path=[]
     state=State()

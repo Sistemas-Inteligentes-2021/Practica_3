@@ -1,31 +1,37 @@
 from queue import PriorityQueue
 import copy
 import math
-q = PriorityQueue()
+# q = PriorityQueue()
 
-q.put((4, 'Read'))
-q.put((2, 'Play'))
-q.put((5, 'Write'))
-q.put((1, 'Code'))
-q.put((3, 'Study'))
-
-
-q2 = PriorityQueue()
-q2.queue = copy.deepcopy(q.queue)
-#for i in q1.queue: q2.put(i)
-
-q2.put((8, 'Brian'))
+# q.put((4, 'Read'))
+# q.put((2, 'Play'))
+# q.put((5, 'Write'))
+# q.put((1, 'Code'))
+# q.put((3, 'Study'))
 
 
-while not q.empty():
-    next_item = q.get()
-    print(next_item[1])
+# state=q.get()
 
-print("---------------------------------------------")
+# print(q.get()[0])
 
-while not q2.empty():
-    next_item = q2.get()
-    print(next_item[1])
+
+
+# q2 = PriorityQueue()
+# q2.queue = copy.deepcopy(q.queue)
+# #for i in q1.queue: q2.put(i)
+
+# q2.put((8, 'Brian'))
+
+
+# while not q.empty():
+#     next_item = q.get()
+#     print(next_item[1])
+
+# print("---------------------------------------------")
+
+# while not q2.empty():
+#     next_item = q2.get()
+#     print(next_item[1])
 
 # #----- MANHATTAN H2 -----------
 # initial_state = [1,5,3,4,2,6,7,8,0]
@@ -50,3 +56,19 @@ while not q2.empty():
 
 # h_manhattan = h2(initial_state, 3)
 # print(h_manhattan)
+
+
+def h1 (list,goal_list,n):
+    sum=0
+    for i in range(n):
+        print(i)
+        if list[i] != goal_list[i]:
+            sum=sum+1
+
+    return sum
+
+initial_state = [0,1,5,3,4,2,6,7,8]
+goal_state = [0,1,2,3,4,5,6,7,8]
+
+print(h1(initial_state,goal_state,9))
+
