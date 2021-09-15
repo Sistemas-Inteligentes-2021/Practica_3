@@ -1,5 +1,6 @@
 from os import read
 from numpy import genfromtxt
+import numpy as np
 from queue import PriorityQueue
 from random import shuffle
 from numpy.lib.scimath import sqrt
@@ -53,9 +54,9 @@ def state_in_queue(node,my_queue):
 
 def h1 (list,goal_list,n):
     sum=0
-    for i in range(n):
-        print(i)
+    for i in range(n):    
         if list[i] != goal_list[i]:
+            print()
             sum=sum+1
     return sum
 
@@ -148,6 +149,8 @@ def A_star(initial_state, actions, goal_state,n, n_parts):
             if sucessor.list != None: #return none if the state cant expand or if it already exist
                 state_counter=state_counter+1
                 sucessor.h=h1(sucessor.list,goal_state,n) #Aqui va nuestra funcion heuristica
+                #sucessor.h=h2(sucessor.list,n_parts) #Aqui va nuestra funcion heuristica
+                #sucessor.h=h3(sucessor.list) #Aqui va nuestra funcion heuristica
                 sucessor.g=state.g+1
                 sucessor.f=sucessor.h+sucessor.g
                 sucessor.setFather(state)
