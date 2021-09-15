@@ -1,12 +1,13 @@
-# Practica_3
-# Describing the problem
+# Practice 3
+## 1. Describing the Problem
 - The main problem that we want to solve is the N_Puzzle, finde the best and optimally solution given and initial state and defined a Goal State
 
-#
+## 2. Describing the Solution
 
+To do
 
-
-## 8 Puzzle (N = 8)
+## 3. Experiments & Results
+### 8 Puzzle (N = 8)
 
 With Heuristic function 1:
 
@@ -47,7 +48,7 @@ Steps | Time | Initial State
 14 | - | [1, 2, 8, 5, 4, 7, 0, 3, 6]
 
 
-## 15 Puzzle (N = 15)
+### 15 Puzzle (N = 15)
 
 With Heuristic function 1:
 
@@ -84,9 +85,8 @@ Steps | Time | Initial State
 10 | - | [1,5,2,3,6,0,10,7,4,8,14,11,12,9,13,15]
 14 | - | [1,2,10,3,6,5,7,0,4,8,14,11,12,9,13,15]
 
-
-
-
+## 4. Conclusions
+---
 TIME COMPARISSON   N = 8
 
 Steps |  h1  | h2 | h3 
@@ -97,6 +97,7 @@ Steps |  h1  | h2 | h3
 9 | - |  - |  -
 10 | - |  - |  -
 14 | - |  - |  -
+
 
 ---
 
@@ -113,10 +114,13 @@ Steps |  h1  | h2 | h3
 14 | - |  - |  -
 
 
-## Bibliography
+## 5. Bibliography
+
+➡️  Manual Tests, 8 Puzzle & 15 Puzzle : [Miro][miro]
 
 ➡️  Copy a Queue: [Stackoverflow][copy_queue]
 
-➡️  Copy a Queue: [Stackoverflow][copy_queue]
+
+[miro]: https://miro.com/welcomeonboard/YWcxVk5zcnNsRTVPOFlsaVZlTnhCdzU1MjNzU3VMbnJHOFdadndBOVV6TVBwY29GOXNZbjg5QndkNTc3OTZnc3wzMDc0NDU3MzQ5MzA5MzU1OTMx
 
 [copy_queue]: https://stackoverflow.com/questions/32488533/how-to-clone-a-queue-in-python
