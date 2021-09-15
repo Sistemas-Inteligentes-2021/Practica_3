@@ -147,8 +147,6 @@ def A_star(initial_state, actions, goal_state,n, n_parts):
             sucessor.list=TF(state,action,closed,n_parts)
             if sucessor.list != None: #return none if the state cant expand or if it already exist
                 state_counter=state_counter+1
-                # if list_in_lists(sucessor.list,closed):
-                #     continue
                 sucessor.h=h1(sucessor.list,goal_state,n) #Aqui va nuestra funcion heuristica
                 sucessor.g=state.g+1
                 sucessor.f=sucessor.h+sucessor.g
