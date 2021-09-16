@@ -120,7 +120,11 @@ Steps |  h1  | h2 | h3
 
 ➡️  Copy a Queue: [Stackoverflow][copy_queue]
 
+➡️  Priority Queue: [Python Docs][priority_queue]
+
 
 [miro]: https://miro.com/welcomeonboard/YWcxVk5zcnNsRTVPOFlsaVZlTnhCdzU1MjNzU3VMbnJHOFdadndBOVV6TVBwY29GOXNZbjg5QndkNTc3OTZnc3wzMDc0NDU3MzQ5MzA5MzU1OTMx
 
 [copy_queue]: https://stackoverflow.com/questions/32488533/how-to-clone-a-queue-in-python
+
+[priority_queue]: https://docs.python.org/3/library/asyncio-queue.html
