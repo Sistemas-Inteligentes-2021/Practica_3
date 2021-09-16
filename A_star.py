@@ -9,6 +9,8 @@ import time
 import copy
 
 q = PriorityQueue()
+copyq= PriorityQueue()
+newq= PriorityQueue()
 
 class State:
     def __init__(self):
@@ -43,11 +45,24 @@ def list_in_lists(single_lis, set_lists):
             return True
     return False
 
+
+def duplicate_queue(my_queue):
+    
+    while not copyq.empty():
+        copyq.get()
+    while not newq.empty():
+        newq.get()
+    while not my_queue.empty():
+        node=my_queue.get()
+        copyq.put(node)
+        newq.put(node)
+    my_queue=newq
+
+
 def state_in_queue(node,my_queue):
-    q = PriorityQueue()
-    q.queue = copy.deepcopy(my_queue.queue)
-    while not q.empty():
-        actualNode=q.get()
+    duplicate_queue(my_queue)
+    while not copyq.empty():
+        actualNode=copyq.get()
         if compare(node.list,actualNode[1].list):
             return actualNode
     return None
@@ -55,8 +70,7 @@ def state_in_queue(node,my_queue):
 def h1 (list,goal_list,n):
     sum=0
     for i in range(n):    
-        if list[i] != goal_list[i]:
-            print()
+        if list[i] != goal_list[i] and list[i]!=0 and goal_list[i]!=0:
             sum=sum+1
     return sum
 
@@ -117,8 +131,8 @@ def TF(state, action,path,n):
                 return None
             index=index-1
         resulList=swap_positions(listNew,listNew.index(0),listNew.index(0)-n)
-
-    return None if list_in_lists(resulList,path) else resulList
+    return resulList
+    #return None if list_in_lists(resulList,path) else resulList
 
 
 def best_option(list_Nodes):
@@ -134,20 +148,24 @@ def best_option(list_Nodes):
 def A_star(initial_state, actions, goal_state,n, n_parts):
     
     closed=[]
+    path=[]
     state_counter=1 #count the initial state 
     q.put((0,initial_state))
     while not q.empty():
-        it_Nodes=[]
         state=q.get()
         state=state[1] #obtengo el nodo
         closed.append(state.list)
         if compare(goal_state,state.list):
-            return state_counter,state,closed
+            return state_counter,state,path
         for action in actions:
             sucessor=State()
             sucessor.list=TF(state,action,closed,n_parts)
+            
             if sucessor.list != None: #return none if the state cant expand or if it already exist
+                path.append(sucessor.list) 
                 state_counter=state_counter+1
+                if list_in_lists(sucessor.list,closed):
+                    continue
                 sucessor.h=h1(sucessor.list,goal_state,n) #Aqui va nuestra funcion heuristica
                 #sucessor.h=h2(sucessor.list,n_parts) #Aqui va nuestra funcion heuristica
                 #sucessor.h=h3(sucessor.list) #Aqui va nuestra funcion heuristica
@@ -158,11 +176,9 @@ def A_star(initial_state, actions, goal_state,n, n_parts):
                 if state_in_open!=None:
                     if sucessor.g >= state_in_open.g:
                         continue
-                print(state_counter)
-                it_Nodes.append(sucessor)
-        sucessor=best_option(it_Nodes)
-        q.put((sucessor.f,sucessor))
-        closed.append(sucessor.list)                
+                q.put((sucessor.f,sucessor))
+                closed.append(sucessor.list)   
+                            
     return state_counter,None,closed
 
 
@@ -203,9 +219,11 @@ def read_from_csv (size):
 
 # State consist of a list of 16 numbers(0 to 15) tahth indicates the position of each box. Being the 0 the blank space
 if __name__ == '__main__':
-    n=int(input('Insert the size of Puzzle: '))
-    n_parts=int(sqrt(n+1))
-    start_time = time.time()
+    n=int(input('Insert the size of Puzzle: '))  # Setup Size of Puzzle N (3, 8, 15)
+    n_parts=int(sqrt(n+1))  # Setup Size of grid N Parts (2, 3, 4)
+    
+    start_time = time.time() # Start Timer
+    
     initial_state, goal_state = read_from_csv(n) # We define the goal and initial state
     actions=['L','U','R','D'] # We define the actions LURD (Left, Up, Right, Down) 
     first_node=State()  # Define Initial State
@@ -226,12 +244,12 @@ if __name__ == '__main__':
         state=objective.father
         goal_path.append(objective.list)
         while(state.father != None):    
-            goal_path.append(state.list);
+            goal_path.append(state.list)
             state=state.father
-        goal_path.append(state.list);
+        goal_path.append(state.list)
         goal_path.reverse()
         show_path(goal_path)
         print("\nNumber of steps to find the goal state are:",len(goal_path)-1)
-    print("--- Time: %s seconds ---" % (time.time() - start_time))
+    print("--- Time: %s seconds ---" % (time.time() - start_time)) # End Timer
 
 
