@@ -115,6 +115,7 @@ Steps |  h1  | h2 | h3
 
 In the end we could observe that according to the heuristic function we used, the number of states that expanded varied. This was due to the shuffle function that we have when there is a tie in priority. 
 
+We use 'Live Share' extension of VSCode to develop the code.
 ## 5. Bibliography
 
 ➡️  Manual Tests, 8 Puzzle & 15 Puzzle : [Miro][miro]

@@ -1,16 +1,18 @@
 from queue import PriorityQueue
 import copy
 import math
-# q = PriorityQueue()
 
-# q.put((4, 'Read'))
-# q.put((2, 'Play'))
-# q.put((5, 'Write'))
-# q.put((1, 'Code'))
-# q.put((3, 'Study'))
+q = PriorityQueue()
+
+q.put((4, 'Read'))
+q.put((2, 'Play'))
+q.put((5, 'Write'))
+q.put((1, 'Code'))
+q.put((3, 'Study'))
 
 
-# state=q.get()
+state=q.get()
+print(state)
 
 # print(q.get()[0])
 
@@ -58,17 +60,17 @@ import math
 # print(h_manhattan)
 
 
-def h1 (list,goal_list,n):
-    sum=0
-    for i in range(n):
-        print(i)
-        if list[i] != goal_list[i]:
-            sum=sum+1
+# def h1 (list,goal_list,n):
+#     sum=0
+#     for i in range(n):
+#         print(i)
+#         if list[i] != goal_list[i]:
+#             sum=sum+1
 
-    return sum
+#     return sum
 
-initial_state = [0,1,5,3,4,2,6,7,8]
-goal_state = [0,1,2,3,4,5,6,7,8]
+# initial_state = [0,1,5,3,4,2,6,7,8]
+# goal_state = [0,1,2,3,4,5,6,7,8]
 
-print(h1(initial_state,goal_state,9))
+# print(h1(initial_state,goal_state,9))
 
