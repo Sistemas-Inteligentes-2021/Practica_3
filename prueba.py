@@ -1,6 +1,7 @@
 from queue import PriorityQueue
 import copy
 import math
+from numpy.lib.scimath import sqrt
 # q = PriorityQueue()
 
 # q.put((4, 'Read'))
@@ -58,17 +59,51 @@ import math
 # print(h_manhattan)
 
 
-def h1 (list,goal_list,n):
-    sum=0
-    for i in range(n):
-        print(i)
-        if list[i] != goal_list[i]:
-            sum=sum+1
+# def h1 (list,goal_list,n):
+#     sum=0
+#     for i in range(n):
+#         print(i)
+#         if list[i] != goal_list[i]:
+#             sum=sum+1
 
-    return sum
+#     return sum
 
-initial_state = [0,1,5,3,4,2,6,7,8]
+# initial_state = [0,1,5,3,4,2,6,7,8]
+# goal_state = [0,1,2,3,4,5,6,7,8]
+
+# print(h1(initial_state,goal_state,9))
+
+#----- EUCLIDEAN H4 -----------
+initial_state = [1,5,3,4,2,6,7,8,0]
 goal_state = [0,1,2,3,4,5,6,7,8]
 
-print(h1(initial_state,goal_state,9))
+# Calculate Euclidean Distance
+def h4_euclidean_distance(initial_state, n_parts):
+    initial_config = initial_state
+    euclidean_distance = 0
+    for i,item in enumerate(initial_config):
+        if item != 0:
+            print('BREAK')
+            print(i)
+            print('Item:',item)
+            prev_row,prev_col = int(i/ n_parts) , i % n_parts
+            goal_row,goal_col = int(item /n_parts), item % n_parts
+            print('PREV_ROW')
+            print(prev_row,prev_col)
+            print('GOAL_ROW')
+            print( goal_row,goal_col)
+            x_euclidean, y_euclidean = abs(prev_row-goal_row), abs(prev_col - goal_col)
+            print('X - Y')
+            print( x_euclidean,y_euclidean)
+            z_euclidean = round(sqrt((pow(x_euclidean,2) + pow(y_euclidean,2))),2)
+            print('Z')
+            print( z_euclidean)
+            euclidean_distance += z_euclidean
+            print('SUM')
+            print(euclidean_distance)
+            print('------------')
+    euclidean_distance = euclidean_distance * 100
+    return int(euclidean_distance)
 
+h_euclidean = h4_euclidean_distance(initial_state, 3)
+print(h_euclidean)
