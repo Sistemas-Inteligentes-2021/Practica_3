@@ -52,6 +52,7 @@ def state_in_queue(node,my_queue):
             return actualNode
     return None
 
+# Heuristic (h1): Count items not in place
 def h1 (list,goal_list,n):
     sum=0
     for i in range(n):    
@@ -59,8 +60,8 @@ def h1 (list,goal_list,n):
             print()
             sum=sum+1
     return sum
-
-# Calculate Manhattan Distance
+    
+# Heuristic (h2): Calculate Manhattan Distance
 def h2(initial_state, n_parts):
     initial_config = initial_state
     manhattan_distance = 0
@@ -71,6 +72,7 @@ def h2(initial_state, n_parts):
             manhattan_distance += abs(prev_row-goal_row) + abs(prev_col - goal_col)
     return manhattan_distance
 
+# Heuristic (h3): Count minor items after
 def h3 (list):
     sum=0
     for i in range(len(list)):
@@ -83,7 +85,7 @@ def h3 (list):
                 aux=aux+1
     return sum
 
-# Heuristic: Euclidean Distance 
+# Heuristic: Calculate Euclidean Distance 
 def h4_euclidean_distance(initial_state, n_parts):
     initial_config = initial_state
     euclidean_distance = 0
@@ -143,7 +145,7 @@ def best_option(list_Nodes):
     return list_Nodes[index_f]
 
 
-# Where the magic start,
+# Where the magic start
 def A_star(initial_state, actions, goal_state,n, n_parts):
     
     closed=[]
@@ -188,13 +190,13 @@ def show_path (path):
             print(number,"  ",end="")
         print("]")
         
-# Split list to display
+# Split List to display
 def split_list(my_list, wanted_parts):
     length = len(my_list)
     return [ my_list[i*length // wanted_parts: (i+1)*length // wanted_parts] 
              for i in range(wanted_parts) ]
 
-# Display Array in Grid
+# Display List in Grid
 def display_array(array, n_parts):
     item = split_list(array, n_parts)
     table = tabulate(item, tablefmt="fancy_grid")
@@ -216,13 +218,13 @@ def read_from_csv (size):
 
 # State consist of a list of N numbers(0 to (N - 1)) that indicates the position of each box. 
 # Being the 0 the blank space.
-if __name__ == '__main__':
-    n=int(input('Insert the size of Puzzle: '))
+def main():
+    n=int(input('Insert the size of Puzzle: '))   
     n_parts=int(sqrt(n+1))
     start_time = time.time()
-    initial_state, goal_state = read_from_csv(n) # We define the goal and initial state
-    actions=['L','U','R','D'] # We define the actions LURD (Left, Up, Right, Down) 
-    first_node=State()  # Define Initial State
+    initial_state, goal_state = read_from_csv(n)  # We define the goal and initial state from CSV
+    actions=['L','U','R','D']                     # We define the actions LURD (Left, Up, Right, Down) 
+    first_node=State()                            # Define Initial State
     first_node.setList(initial_state)
     first_node.setFather(None)
     first_node.g=0
@@ -248,4 +250,8 @@ if __name__ == '__main__':
         print("\nNumber of steps to find the goal state are:",len(goal_path)-1)
     print("--- Time: %s seconds ---" % (time.time() - start_time))
 
+
+
+if __name__ == '__main__':
+    main()
 
