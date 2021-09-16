@@ -78,6 +78,18 @@ def h3 (list):
                 aux=aux+1
     return sum
 
+def h4(initial_state, n_parts):
+    initial_config = initial_state
+    euclidean_distance = 0
+    for i,item in enumerate(initial_config):
+        if item != 0:
+            prev_row,prev_col = int(i/ n_parts) , i % n_parts
+            goal_row,goal_col = int(item /n_parts), item % n_parts
+            x_euclidean, y_euclidean = abs(prev_row-goal_row), abs(prev_col - goal_col)
+            z_euclidean = round(sqrt((pow(x_euclidean,2) + pow(y_euclidean,2))),2)    
+            euclidean_distance += z_euclidean
+    euclidean_distance = euclidean_distance * 100
+    return int(euclidean_distance)
 
 
 # Transition function expect a state and an action and will return the possible succesor state in base of the action
@@ -150,20 +162,23 @@ def A_star(initial_state, actions, goal_state,n, n_parts):
         state=State()
         state=Newstate[1] #obtengo el nodo
         closed.append(state.list)
+        
         if compare(goal_state,state.list):
             return state_counter,state,closed
         for action in actions:
             sucessor=State()
-            sucessor.list=TF(state,action,closed,n_parts)            
+            sucessor.list=TF(state,action,closed,n_parts)    
+            
             if sucessor.list != None: #return none if the state cant expand or if it already exist
-                
+                state_counter=state_counter+1        
                 #display_array(sucessor.list,n_parts)                
-                state_counter=state_counter+1
+                
                 if list_in_lists(sucessor.list,closed):
                     continue
-                sucessor.h=h1(sucessor.list,goal_state,n) #Aqui va nuestra funcion heuristica
-                #sucessor.h=h2(sucessor.list,n_parts) #Aqui va nuestra funcion heuristica
+                #sucessor.h=h1(sucessor.list,goal_state,n) #Aqui va nuestra funcion heuristica
+                sucessor.h=h2(sucessor.list,n_parts) #Aqui va nuestra funcion heuristica
                 #sucessor.h=h3(sucessor.list) #Aqui va nuestra funcion heuristica
+                #sucessor.h=h4(sucessor.list,n_parts) #Aqui va nuestra funcion heuristica                
                 sucessor.g=state.g+1
                 sucessor.f=sucessor.h+sucessor.g
                 
@@ -201,7 +216,8 @@ def read_from_csv (size):
 
 
 def main():
-    n=int(input('Insert the size of Puzzle: '))  # Setup Size of Puzzle N (3, 8, 15)
+    #n=int(input('Insert the size of Puzzle: '))  # Setup Size of Puzzle N (3, 8, 15)
+    n=8
     n_parts=int(sqrt(n+1))  # Setup Size of grid N Parts (2, 3, 4)
     
     start_time = time.time() # Start Timer
@@ -221,7 +237,7 @@ def main():
     if  objective != None:
         if objective.father==None:
             goal_path.append(objective.list)
-            show_path(goal_path)
+            #show_path(goal_path)
             print("\nNumber of steps to find the goal state are:",len(goal_path)-1)    
 
         state=objective.father
@@ -231,7 +247,8 @@ def main():
             state=state.father
         goal_path.append(state.list)
         goal_path.reverse()
-        show_path(goal_path)
+        #show_path(goal_path)
+        #display_path(goal_path,n_parts)
         print("\nNumber of steps to find the goal state are:",len(goal_path)-1)
     print("--- Time: %s seconds ---" % (time.time() - start_time)) # End Timer
 
