@@ -52,14 +52,15 @@ def state_in_queue(node,my_queue):
             return my_queue,actualNode[1]
     return my_queue,None
 
+# Heuristic (h1): Count items not in place
 def h1 (list,goal_list,n):
     sum=0
     for i in range(n):    
         if list[i] != goal_list[i] and list[i]!=0:  #quitar el goallist!=0
             sum=sum+1
     return sum
-
-# Calculate Manhattan Distance
+    
+# Heuristic (h2): Calculate Manhattan Distance
 def h2(initial_state, n_parts):
     initial_config = initial_state
     manhattan_distance = 0
@@ -70,6 +71,7 @@ def h2(initial_state, n_parts):
             manhattan_distance += abs(prev_row-goal_row) + abs(prev_col - goal_col)
     return manhattan_distance
 
+# Heuristic (h3): Count minor items after
 def h3 (list):
     sum=0
     for i in range(len(list)):
@@ -82,7 +84,7 @@ def h3 (list):
                 aux=aux+1
     return sum
 
-# Heuristic: Euclidean Distance 
+# Heuristic: Calculate Euclidean Distance 
 def h4_euclidean_distance(initial_state, n_parts):
     initial_config = initial_state
     euclidean_distance = 0
@@ -206,7 +208,8 @@ def read_from_csv (size):
     goal_state_parsed = [x for x in data[1]]
     return initial_state_parsed, goal_state_parsed
 
-
+# State consist of a list of N numbers(0 to (N - 1)) that indicates the position of each box. 
+# Being the 0 the blank space.
 def main():
     n=int(input('Insert the size of Puzzle: '))  # Setup Size of Puzzle N (3, 8, 15)
     n_parts=int(sqrt(n+1))  # Setup Size of grid N Parts (2, 3, 4)
@@ -243,7 +246,6 @@ def main():
     print("--- Time: %s seconds ---" % (time.time() - start_time)) # End Timer
 
 
-# State consist of a list of 16 numbers(0 to 15) tahth indicates the position of each box. Being the 0 the blank space
 if __name__ == '__main__':
     main()
 
