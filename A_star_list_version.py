@@ -5,7 +5,6 @@ from numpy.lib.scimath import sqrt
 from tabulate import tabulate
 import time
 import copy
-import heapq
 
 
 class State:
@@ -42,22 +41,9 @@ def list_in_lists(single_lis, set_lists):
     return False
 
 
-def duplicate_queue(my_queue):
-    copyq=[]
-    newq=[]
-    while my_queue:
-        node=heapq.heappop(my_queue)
-        heapq.heappush(copyq,node)
-        heapq.heappush(newq,node)
-    my_queue=copy.deepcopy(newq)
-    return my_queue,copyq
-
-
 def state_in_queue(node,my_queue):
-    copyq=[]
-    my_queue,copyq=duplicate_queue(my_queue)
-    while copyq:
-        actualNode=heapq.heappop(copyq)
+    copyq=copy.deepcopy(my_queue)
+    for actualNode in copyq:
         if compare(node.list,actualNode[1].list):
             return my_queue,actualNode
     return my_queue,None
@@ -142,17 +128,26 @@ def display_array(array, n_parts):
     print(table)
     print('\n')
 
+def lessPriority(NodeList):
+    smaller=NodeList[0][0]
+    index_smaller=-1
+    for item in NodeList:
+        if item[0]<smaller:
+            index_smaller=NodeList.index(item)
+    answer=NodeList[index_smaller]
+    NodeList.pop(index_smaller) 
+    return answer
 
 # Where the magic start,
 def A_star(initial_state, actions, goal_state,n, n_parts):    
     q = []
     state_counter=1 #count the initial state 
     closed=[]
-    heapq.heappush(q, (0,initial_state))
+    q.append((0,initial_state))
     #display_array(initial_state.list,n_parts)
     while q:        
-        print(q[0])
-        Newstate=heapq.heappop(q)
+    
+        Newstate=lessPriority(q) #obtengo el de menor prioridad
         state=State()
         state=Newstate[1] #obtengo el nodo
         closed.append(state.list)
@@ -167,9 +162,9 @@ def A_star(initial_state, actions, goal_state,n, n_parts):
                 state_counter=state_counter+1
                 if list_in_lists(sucessor.list,closed):
                     continue
-                sucessor.h=h1(sucessor.list,goal_state,n) #Aqui va nuestra funcion heuristica
+                #sucessor.h=h1(sucessor.list,goal_state,n) #Aqui va nuestra funcion heuristica
                 #sucessor.h=h2(sucessor.list,n_parts) #Aqui va nuestra funcion heuristica
-                #sucessor.h=h3(sucessor.list) #Aqui va nuestra funcion heuristica
+                sucessor.h=h3(sucessor.list) #Aqui va nuestra funcion heuristica
                 sucessor.g=state.g+1
                 sucessor.f=sucessor.h+sucessor.g
                 sucessor.setFather(state)
@@ -177,7 +172,7 @@ def A_star(initial_state, actions, goal_state,n, n_parts):
                 if state_in_open!=None:
                     if sucessor.g >= state_in_open.g:
                         continue
-                heapq.heappush(q,(sucessor.f,sucessor))
+                q.append((sucessor.f,sucessor))
     return state_counter,None,closed
 
 

@@ -42,20 +42,10 @@ def list_in_lists(single_lis, set_lists):
     return False
 
 
-def duplicate_queue(my_queue):
-    copyq=[]
-    newq=[]
-    while my_queue:
-        node=heapq.heappop(my_queue)
-        heapq.heappush(copyq,node)
-        heapq.heappush(newq,node)
-    my_queue=copy.deepcopy(newq)
-    return my_queue,copyq
 
 
 def state_in_queue(node,my_queue):
-    copyq=[]
-    my_queue,copyq=duplicate_queue(my_queue)
+    copyq=copy.deepcopy(my_queue)
     while copyq:
         actualNode=heapq.heappop(copyq)
         if compare(node.list,actualNode[1].list):
@@ -151,7 +141,6 @@ def A_star(initial_state, actions, goal_state,n, n_parts):
     heapq.heappush(q, (0,initial_state))
     #display_array(initial_state.list,n_parts)
     while q:        
-        print(q[0])
         Newstate=heapq.heappop(q)
         state=State()
         state=Newstate[1] #obtengo el nodo
