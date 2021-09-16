@@ -5,14 +5,17 @@ import math
 q = PriorityQueue()
 
 q.put((4, 'Read'))
-q.put((2, 'Play'))
+q.put((5, 'Play'))
 q.put((5, 'Write'))
 q.put((1, 'Code'))
 q.put((3, 'Study'))
 
 
-state=q.get()
-print(state)
+
+while not q.empty():
+    next_item = q.get()
+    print(next_item)
+
 
 # print(q.get()[0])
 
@@ -24,10 +27,6 @@ print(state)
 
 # q2.put((8, 'Brian'))
 
-
-# while not q.empty():
-#     next_item = q.get()
-#     print(next_item[1])
 
 # print("---------------------------------------------")
 

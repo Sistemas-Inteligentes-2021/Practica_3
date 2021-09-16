@@ -161,8 +161,8 @@ def A_star(initial_state, actions, goal_state,n, n_parts):
     q.put((0,initial_state))
     #display_array(initial_state.list,n_parts)
     while not q.empty():        
-        state=q.get()
-        state=state[1] #obtengo el nodo
+        Newstate=q.get()
+        state=Newstate[1] #obtengo el nodo
         closed.append(state.list)
         if compare(goal_state,state.list):
             return state_counter,state,closed
