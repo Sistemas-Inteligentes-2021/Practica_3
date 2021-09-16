@@ -214,7 +214,8 @@ def read_from_csv (size):
     goal_state_parsed = [x for x in data[1]]
     return initial_state_parsed, goal_state_parsed
 
-# State consist of a list of 16 numbers(0 to 15) tahth indicates the position of each box. Being the 0 the blank space
+# State consist of a list of N numbers(0 to (N - 1)) that indicates the position of each box. 
+# Being the 0 the blank space.
 if __name__ == '__main__':
     n=int(input('Insert the size of Puzzle: '))
     n_parts=int(sqrt(n+1))
