@@ -113,6 +113,7 @@ Steps |  h1  | h2 | h3
 10 | - |  - |  -
 14 | - |  - |  -
 
+In the end we could observe that according to the heuristic function we used, the number of states that expanded varied. This was due to the shuffle function that we have when there is a tie in priority. 
 
 ## 5. Bibliography
 
