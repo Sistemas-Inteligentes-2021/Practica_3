@@ -130,3 +130,5 @@ We use 'Live Share' extension of VSCode to develop the code.
 [copy_queue]: https://stackoverflow.com/questions/32488533/how-to-clone-a-queue-in-python
 
 [priority_queue]: https://docs.python.org/3/library/asyncio-queue.html
+https://docs.python.org/3/library/heapq.html
+pip install heapq
