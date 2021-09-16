@@ -49,7 +49,7 @@ def state_in_queue(node,my_queue):
     while copyq:
         actualNode=heapq.heappop(copyq)
         if compare(node.list,actualNode[1].list):
-            return my_queue,actualNode
+            return my_queue,actualNode[1]
     return my_queue,None
 
 def h1 (list,goal_list,n):

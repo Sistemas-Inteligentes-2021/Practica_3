@@ -45,7 +45,7 @@ def state_in_queue(node,my_queue):
     copyq=copy.deepcopy(my_queue)
     for actualNode in copyq:
         if compare(node.list,actualNode[1].list):
-            return my_queue,actualNode
+            return my_queue,actualNode[1]
     return my_queue,None
 
 def h1 (list,goal_list,n):
@@ -130,7 +130,7 @@ def display_array(array, n_parts):
 
 def lessPriority(NodeList):
     smaller=NodeList[0][0]
-    index_smaller=-1
+    index_smaller=0
     for item in NodeList:
         if item[0]<smaller:
             index_smaller=NodeList.index(item)
@@ -146,7 +146,6 @@ def A_star(initial_state, actions, goal_state,n, n_parts):
     q.append((0,initial_state))
     #display_array(initial_state.list,n_parts)
     while q:        
-    
         Newstate=lessPriority(q) #obtengo el de menor prioridad
         state=State()
         state=Newstate[1] #obtengo el nodo
@@ -157,16 +156,17 @@ def A_star(initial_state, actions, goal_state,n, n_parts):
             sucessor=State()
             sucessor.list=TF(state,action,closed,n_parts)            
             if sucessor.list != None: #return none if the state cant expand or if it already exist
-                #print(action,sucessor.list)
+                
                 #display_array(sucessor.list,n_parts)                
                 state_counter=state_counter+1
                 if list_in_lists(sucessor.list,closed):
                     continue
-                #sucessor.h=h1(sucessor.list,goal_state,n) #Aqui va nuestra funcion heuristica
+                sucessor.h=h1(sucessor.list,goal_state,n) #Aqui va nuestra funcion heuristica
                 #sucessor.h=h2(sucessor.list,n_parts) #Aqui va nuestra funcion heuristica
-                sucessor.h=h3(sucessor.list) #Aqui va nuestra funcion heuristica
+                #sucessor.h=h3(sucessor.list) #Aqui va nuestra funcion heuristica
                 sucessor.g=state.g+1
                 sucessor.f=sucessor.h+sucessor.g
+                
                 sucessor.setFather(state)
                 q,state_in_open=state_in_queue(sucessor,q)
                 if state_in_open!=None:
