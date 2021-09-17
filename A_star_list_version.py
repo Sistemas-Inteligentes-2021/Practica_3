@@ -214,17 +214,18 @@ def read_from_csv (size):
     goal_state_parsed = [x for x in data[1]]
     return initial_state_parsed, goal_state_parsed
 
-
+# State consist of a list of N numbers(0 to (N - 1)) that indicates the position of each box. 
+# Being the 0 the blank space.
 def main():
-    #n=int(input('Insert the size of Puzzle: '))  # Setup Size of Puzzle N (3, 8, 15)
-    n=8
-    n_parts=int(sqrt(n+1))  # Setup Size of grid N Parts (2, 3, 4)
+    n=int(input('Insert the size of Puzzle: '))     # Setup Size of Puzzle N (3, 8, 15)
+    n_parts=int(sqrt(n+1))                          # Setup Size of grid N Parts (2, 3, 4)
     
-    start_time = time.time() # Start Timer
+    start_time = time.time()                        # Start Timer
     
-    initial_state, goal_state = read_from_csv(n) # We define the goal and initial state
-    actions=['L','U','R','D'] # We define the actions LURD (Left, Up, Right, Down) 
-    first_node=State()  # Define Initial State
+    initial_state, goal_state = read_from_csv(n)    # We define the goal and initial state
+    actions=['L','U','R','D']                       # We define the actions LURD (Left, Up, Right, Down)
+     
+    first_node=State()                              # Define Initial State
     first_node.setList(initial_state)
 
     counter,objective,path=A_star(first_node,actions,goal_state,n,n_parts)
@@ -252,8 +253,6 @@ def main():
         print("\nNumber of steps to find the goal state are:",len(goal_path)-1)
     print("--- Time: %s seconds ---" % (time.time() - start_time)) # End Timer
 
-
-# State consist of a list of 16 numbers(0 to 15) tahth indicates the position of each box. Being the 0 the blank space
 if __name__ == '__main__':
     main()
 
