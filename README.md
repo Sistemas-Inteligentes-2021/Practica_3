@@ -8,7 +8,7 @@ To resolve the problem int his laboratory we are using A star algorithm, we will
 
 ## 3. Experiments & Results
 
-We use the file "A_star_list_version.py" for running the experiments and saving the results, you can see an example of how we annote the data in "Print_view.png" in assets.images folder, the algorithm works with n puzzle the only thing that we need to run the program is create the csv with the name "Data_NPuzzle.csv" with the initial and goal state, finally the results that we get are:
+We use the file "A_star_list_version.py" for running the experiments and saving the results, you can see an example of how we annote the data in "Print_view.png" in Assets/Images/Prints folder, the algorithm works with n puzzle the only thing that we need to run the program is create the csv with the name "Data_NPuzzle.csv" with the initial and goal state, finally the results that we get are:
 ### 8 Puzzle (N = 8)
 
 With Heuristic function 1:
@@ -153,7 +153,7 @@ What we do was find the euclidean distance beetwen the node visited and the goal
 
 ### Comments
 
-When we are developing the algorithm we get noticed that the priority queue librarie that python documentation give has not the problem that we experimented, we used both libraries thinking that the problem may be just one, but we have the same issue (the issue can see it in assets images "Error heap.png" and "Error Priority queue.png"), we really try to find a way to solve the problem looking at forums like in stack overflow, github or looking for examples with that library but we didnt solve anything at the end we just simply decided to use a list and make a function to pick the best heuristic and we did that, the algorithm that we used for a star was the algorithm that we saw in classes and we comprobe it looking for another algorithm and we found the same.
+When we are developing the algorithm we get noticed that the priority queue librarie that python documentation give has not the problem that we experimented, we used both libraries thinking that the problem may be just one, but we have the same issue (the issue can see it in assets Images/Error "Error heap.png" and "Error Priority queue.png"), we really try to find a way to solve the problem looking at forums like in stack overflow, github or looking for examples with that library but we didnt solve anything at the end we just simply decided to use a list and make a function to pick the best heuristic and we did that, the algorithm that we used for a star was the algorithm that we saw in classes and we comprobe it looking for another algorithm and we found the same.
 
 We use 'Live Share' extension of VSCode to develop the code.
 

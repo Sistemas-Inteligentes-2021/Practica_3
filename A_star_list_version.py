@@ -48,6 +48,7 @@ def state_in_queue(node,my_queue):
             return my_queue,actualNode[1]
     return my_queue,None
 
+# Heuristic (h1): Miss Placed Boxes
 def h1 (list,goal_list,n):
     sum=0
     for i in range(n):    
@@ -55,7 +56,7 @@ def h1 (list,goal_list,n):
             sum=sum+1
     return sum
 
-# Calculate Manhattan Distance
+# Heuristic (h2): Manhattan Distance
 def h2(initial_state, n_parts):
     initial_config = initial_state
     manhattan_distance = 0
@@ -66,6 +67,7 @@ def h2(initial_state, n_parts):
             manhattan_distance += abs(prev_row-goal_row) + abs(prev_col - goal_col)
     return manhattan_distance
 
+# Heuristic (h3): The Sumatory of Inverse Permutations
 def h3 (list):
     sum=0
     for i in range(len(list)):
@@ -78,6 +80,7 @@ def h3 (list):
                 aux=aux+1
     return sum
 
+# Heuristic (h4): Euclidean Distance 
 def h4(initial_state, n_parts):
     initial_config = initial_state
     euclidean_distance = 0
@@ -90,7 +93,6 @@ def h4(initial_state, n_parts):
             euclidean_distance += z_euclidean
     euclidean_distance = euclidean_distance * 100
     return int(euclidean_distance)
-
 
 # Transition function expect a state and an action and will return the possible succesor state in base of the action
 def TF(state, action,path,n):
@@ -124,7 +126,6 @@ def TF(state, action,path,n):
                 return None
             index=index-1
         resulList=swap_positions(listNew,listNew.index(0),listNew.index(0)-n)
-    #return resulList
     return None if list_in_lists(resulList,path) else resulList
 
 # Split list to display
@@ -140,6 +141,7 @@ def display_array(array, n_parts):
     print(table)
     print('\n')
 
+# Get the shortest priority
 def lessPriority(NodeList):
     smaller=NodeList[0][0]
     index_smaller=0
@@ -153,14 +155,14 @@ def lessPriority(NodeList):
 # Where the magic start,
 def A_star(initial_state, actions, goal_state,n, n_parts):    
     q = []
-    state_counter=1 #count the initial state 
+    state_counter=1                                         # count the initial state 
     closed=[]
     q.append((0,initial_state))
-    #display_array(initial_state.list,n_parts)
+    # display_array(initial_state.list,n_parts)
     while q:        
-        Newstate=lessPriority(q) #obtengo el de menor prioridad
+        Newstate=lessPriority(q)                            # get the shortest priority
         state=State()
-        state=Newstate[1] #obtengo el nodo
+        state=Newstate[1]                                   # get nodo
         closed.append(state.list)
         
         if compare(goal_state,state.list):
@@ -169,16 +171,16 @@ def A_star(initial_state, actions, goal_state,n, n_parts):
             sucessor=State()
             sucessor.list=TF(state,action,closed,n_parts)    
             
-            if sucessor.list != None: #return none if the state cant expand or if it already exist
+            if sucessor.list != None:                       # return none if the state cant expand or if it already exist
                 state_counter=state_counter+1        
                 #display_array(sucessor.list,n_parts)                
                 
                 if list_in_lists(sucessor.list,closed):
                     continue
-                sucessor.h=h1(sucessor.list,goal_state,n) #Aqui va nuestra funcion heuristica
-                #sucessor.h=h2(sucessor.list,n_parts) #Aqui va nuestra funcion heuristica
-                #sucessor.h=h3(sucessor.list) #Aqui va nuestra funcion heuristica
-                #sucessor.h=h4(sucessor.list,n_parts) #Aqui va nuestra funcion heuristica                
+                sucessor.h=h1(sucessor.list,goal_state,n)   # Aqui va nuestra funcion heuristica h1
+                #sucessor.h=h2(sucessor.list,n_parts)       # Aqui va nuestra funcion heuristica h2
+                #sucessor.h=h3(sucessor.list)               # Aqui va nuestra funcion heuristica h3
+                #sucessor.h=h4(sucessor.list,n_parts)       # Aqui va nuestra funcion heuristica h4             
                 sucessor.g=state.g+1
                 sucessor.f=sucessor.h+sucessor.g
                 
@@ -190,8 +192,6 @@ def A_star(initial_state, actions, goal_state,n, n_parts):
                 q.append((sucessor.f,sucessor))
     return state_counter,None,closed
 
-
-
 # The last step show the steps
 def show_path (path):
     for item in path:
@@ -200,7 +200,6 @@ def show_path (path):
             print(number,"  ",end="")
         print("]")
         
-
 # Display Path in Grids
 def display_path(path, n_parts):
     for item in path:
@@ -217,28 +216,28 @@ def read_from_csv (size):
 # State consist of a list of N numbers(0 to (N - 1)) that indicates the position of each box. 
 # Being the 0 the blank space.
 def main():
-    n=int(input('Insert the size of Puzzle: '))     # Setup Size of Puzzle N (3, 8, 15)
-    n_parts=int(sqrt(n+1))                          # Setup Size of grid N Parts (2, 3, 4)
+    n=int(input('Insert the size of Puzzle: '))                     # Setup Size of Puzzle N (3, 8, 15)
+    n_parts=int(sqrt(n+1))                                          # Setup Size of grid N Parts (2, 3, 4)
     
-    start_time = time.time()                        # Start Timer
+    start_time = time.time()                                        # Start Timer
     
-    initial_state, goal_state = read_from_csv(n)    # We define the goal and initial state
-    actions=['L','U','R','D']                       # We define the actions LURD (Left, Up, Right, Down)
-     
-    first_node=State()                              # Define Initial State
+    initial_state, goal_state = read_from_csv(n)                    # We define the goal and initial state
+    actions=['L','U','R','D']                                       # We define the actions LURD (Left, Up, Right, Down)
+
+    first_node=State()                                              # Define Initial State
     first_node.setList(initial_state)
 
     counter,objective,path=A_star(first_node,actions,goal_state,n,n_parts)
 
     print("\nNumber of space states are:",counter)
-    #show_path(path)
+    # show_path(path)
     print("\n==============================\n")
     goal_path=[]
     state=State()
     if  objective != None:
         if objective.father==None:
             goal_path.append(objective.list)
-            #show_path(goal_path)
+            # show_path(goal_path)
             print("\nNumber of steps to find the goal state are:",len(goal_path)-1)    
 
         state=objective.father
@@ -248,10 +247,10 @@ def main():
             state=state.father
         goal_path.append(state.list)
         goal_path.reverse()
-        #show_path(goal_path)
-        #display_path(goal_path,n_parts)
+        # show_path(goal_path)
+        # display_path(goal_path,n_parts)                           # Display in Grids
         print("\nNumber of steps to find the goal state are:",len(goal_path)-1)
-    print("--- Time: %s seconds ---" % (time.time() - start_time)) # End Timer
+    print("--- Time: %s seconds ---" % (time.time() - start_time))  # End Timer
 
 if __name__ == '__main__':
     main()

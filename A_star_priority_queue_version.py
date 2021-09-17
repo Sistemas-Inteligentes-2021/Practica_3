@@ -62,7 +62,7 @@ def state_in_queue(node,my_queue):
             return my_queue,actualNode[1]
     return my_queue,None
 
-# Heuristic (h1): Count items not in place
+# Heuristic (h1): Miss Placed Boxes
 def h1 (list,goal_list,n):
     sum=0
     for i in range(n):    
@@ -70,7 +70,7 @@ def h1 (list,goal_list,n):
             sum=sum+1
     return sum
     
-# Heuristic (h2): Calculate Manhattan Distance
+# Heuristic (h2): Manhattan Distance
 def h2(initial_state, n_parts):
     initial_config = initial_state
     manhattan_distance = 0
@@ -81,7 +81,7 @@ def h2(initial_state, n_parts):
             manhattan_distance += abs(prev_row-goal_row) + abs(prev_col - goal_col)
     return manhattan_distance
 
-# Heuristic (h3): Count minor items after
+# Heuristic (h3): The Sumatory of Inverse Permutations
 def h3 (list):
     sum=0
     for i in range(len(list)):
@@ -94,7 +94,7 @@ def h3 (list):
                 aux=aux+1
     return sum
 
-# Heuristic: Calculate Euclidean Distance 
+# Heuristic (h4): Euclidean Distance 
 def h4_euclidean_distance(initial_state, n_parts):
     initial_config = initial_state
     euclidean_distance = 0
@@ -163,7 +163,7 @@ def display_array(array, n_parts):
 # Where the magic start,
 def A_star(initial_state, actions, goal_state,n, n_parts):    
     q = PriorityQueue()
-    state_counter=1 #count the initial state 
+    state_counter=1                                         # count the initial state 
     closed=[]
     q.put((0,initial_state))
     #display_array(initial_state.list,n_parts)
@@ -177,15 +177,15 @@ def A_star(initial_state, actions, goal_state,n, n_parts):
         for action in actions:
             sucessor=State()
             sucessor.list=TF(state,action,closed,n_parts)            
-            if sucessor.list != None: #return none if the state cant expand or if it already exist
+            if sucessor.list != None:                       # return none if the state cant expand or if it already exist
                 #print(action,sucessor.list)
                 #display_array(sucessor.list,n_parts)                
                 state_counter=state_counter+1
                 if list_in_lists(sucessor.list,closed):
                     continue
-                sucessor.h=h1(sucessor.list,goal_state,n) #Aqui va nuestra funcion heuristica
-                #sucessor.h=h2(sucessor.list,n_parts) #Aqui va nuestra funcion heuristica
-                #sucessor.h=h3(sucessor.list) #Aqui va nuestra funcion heuristica
+                sucessor.h=h1(sucessor.list,goal_state,n)   # Aqui va nuestra funcion heuristica
+                #sucessor.h=h2(sucessor.list,n_parts)       # Aqui va nuestra funcion heuristica
+                #sucessor.h=h3(sucessor.list)               # Aqui va nuestra funcion heuristica
                 sucessor.g=state.g+1
                 sucessor.f=sucessor.h+sucessor.g
                 sucessor.setFather(state)
@@ -220,16 +220,17 @@ def read_from_csv (size):
     goal_state_parsed = [x for x in data[1]]
     return initial_state_parsed, goal_state_parsed
 
-
+# State consist of a list of N numbers(0 to (N - 1)) that indicates the position of each box. 
+# Being the 0 the blank space.
 def main():
-    n=int(input('Insert the size of Puzzle: '))  # Setup Size of Puzzle N (3, 8, 15)
-    n_parts=int(sqrt(n+1))  # Setup Size of grid N Parts (2, 3, 4)
+    n=int(input('Insert the size of Puzzle: '))                     # Setup Size of Puzzle N (3, 8, 15)
+    n_parts=int(sqrt(n+1))                                          # Setup Size of grid N Parts (2, 3, 4)
     
-    start_time = time.time() # Start Timer
+    start_time = time.time()                                        # Start Timer
     
-    initial_state, goal_state = read_from_csv(n) # We define the goal and initial state
-    actions=['L','U','R','D'] # We define the actions LURD (Left, Up, Right, Down) 
-    first_node=State()  # Define Initial State
+    initial_state, goal_state = read_from_csv(n)                    # We define the goal and initial state
+    actions=['L','U','R','D']                                       # We define the actions LURD (Left, Up, Right, Down) 
+    first_node=State()                                              # Define Initial State
     first_node.setList(initial_state)
 
     counter,objective,path=A_star(first_node,actions,goal_state,n,n_parts)
@@ -255,6 +256,5 @@ def main():
     print("--- Time: %s seconds ---" % (time.time() - start_time)) # End Timer
 
 
-# State consist of a list of 16 numbers(0 to 15) tahth indicates the position of each box. Being the 0 the blank space
 if __name__ == '__main__':
     main()
