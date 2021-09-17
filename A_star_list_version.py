@@ -247,10 +247,11 @@ def main():
             state=state.father
         goal_path.append(state.list)
         goal_path.reverse()
-        # show_path(goal_path)
-        # display_path(goal_path,n_parts)                           # Display in Grids
+        # show_path(goal_path)                                      # Remove comment to display in Array
+        # display_path(goal_path,n_parts)                           # Remove comment to display in Grids
         print("\nNumber of steps to find the goal state are:",len(goal_path)-1)
     print("--- Time: %s seconds ---" % (time.time() - start_time))  # End Timer
+    print("\n*** For more information Remove comment line 251 (Grid) or 250 (Array) ***")
 
 if __name__ == '__main__':
     main()
