@@ -217,7 +217,7 @@ def read_from_csv (size):
 
 def main():
     #n=int(input('Insert the size of Puzzle: '))  # Setup Size of Puzzle N (3, 8, 15)
-    n=8
+    n=15
     n_parts=int(sqrt(n+1))  # Setup Size of grid N Parts (2, 3, 4)
     
     start_time = time.time() # Start Timer

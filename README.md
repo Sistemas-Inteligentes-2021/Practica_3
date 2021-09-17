@@ -21,6 +21,7 @@ Initial State | Time (seconds) | Space States | Steps | Ideal Steps
 [1, 0, 2, 5, 4, 8, 3, 6, 7] | 0.017000675201416016 |  56  |  9  |  9
 [1, 2, 0, 5, 4, 8, 3, 6, 7] | 0.0260159969329834 |  73  |  10  |  10
 [1, 2, 8, 5, 4, 7, 0, 3, 6] | 0.8903868198394775 |  478  |  14  |  14
+[4, 6, 1, 5, 0, 8, 7, 2, 3] | 352.85682916641235 |  9177  |  20  |  20
 
 
 With Heuristic function 2:
@@ -33,6 +34,7 @@ Initial State | Time(seconds) | Space States | Steps | Ideal Steps
 [1, 0, 2, 5, 4, 8, 3, 6, 7] | 0.009000062942504883 |  30  |  9  |  9
 [1, 2, 0, 5, 4, 8, 3, 6, 7] | 0.009001016616821289 |  32  |  10  |  10
 [1, 2, 8, 5, 4, 7, 0, 3, 6] | 0.01399993896484375 |  44  |  14  |  14
+[4, 6, 1, 5, 0, 8, 7, 2, 3] | 1.4729995727539062 |  560  |  20  |  20
 
 
 With Heuristic function 3:
@@ -45,6 +47,7 @@ Initial State | Time(seconds) | Space States | Steps | Ideal Steps
 [1, 0, 2, 5, 4, 8, 3, 6, 7] | 0.007000923156738281 |  22  |  9  |  9
 [1, 2, 0, 5, 4, 8, 3, 6, 7] | 0.00799870491027832 |  27  |  10  |  10
 [1, 2, 8, 5, 4, 7, 0, 3, 6] | 0.04492330551147461 |  101  |  14  |  14
+[4, 6, 1, 5, 0, 8, 7, 2, 3] | 1.9899470806121826 |  712  |  20  |  20
 
 
 *OPTIONAL
@@ -86,8 +89,8 @@ Initial State | Time(seconds) | Space States | Steps | Ideal Steps
 [1, 5, 2, 3, 0, 6, 10, 7, 4, 8, 14, 11, 12, 9, 13, 15] | 0.007999420166015625 | 24 | 9 |  9
 [1, 5, 2, 3, 6, 0, 10, 7, 4, 8, 14, 11, 12, 9, 13, 15] | 0.008999109268188477 | 30 | 10 |  10
 [1, 2, 10, 3, 6, 5, 7, 0, 4, 8, 14, 11, 12, 9, 13, 15] | 0.013000726699829102 | 38 | 14 |  14
-[1, 2, 10, 3, 6, 5, 7, 0, 4, 8, 14, 11, 12, 9, 13, 15] | 44.222795724868774 | 2832 | 30 |  30
-[1, 2, 10, 3, 6, 5, 7, 0, 4, 8, 14, 11, 12, 9, 13, 15] | 213.93165183067322 | 6120 | 31 |  31
+[1, 10, 0, 2, 6, 8, 5, 11, 14, 13, 3, 7, 4, 12, 9, 15] | 44.222795724868774 | 2832 | 30 |  30
+[1, 0, 10, 2, 6, 8, 5, 11, 14, 13, 3, 7, 4, 12, 9, 15] | 213.93165183067322 | 6120 | 31 |  31
 
 
 With Heuristic function 3:
@@ -116,7 +119,7 @@ Initial State | Time(seconds) | Space States | Steps | Ideal Steps
 [1, 2, 10, 3, 6, 5, 7, 0, 4, 8, 14, 11, 12, 9, 13, 15] | 42.99076700210571 | 2948 | 720 |  14
 ## 4. Conclusions
 ---
-Time Comparassion   N = 8
+TIME COMPARISON   N = 8
 
 Initial State | Ideal Steps |  h1  | h2 | h3 
 :---: | :---: | :---: | :---: | :---:
@@ -126,11 +129,23 @@ Initial State | Ideal Steps |  h1  | h2 | h3
 [1, 0, 2, 5, 4, 8, 3, 6, 7] | 9 | 0.017000675201416016  | 0.009000062942504883  |  0.007000923156738281 
 [1, 2, 0, 5, 4, 8, 3, 6, 7] | 10 | 0.0260159969329834  | 0.009001016616821289  |  0.00799870491027832 
 [1, 2, 8, 5, 4, 7, 0, 3, 6] | 14 | 0.8903868198394775  | 0.01399993896484375  |  0.04492330551147461 
+[4, 6, 1, 5, 0, 8, 7, 2, 3] | 20 | 352.85682916641235  | 1.4729995727539062  |  1.9899470806121826 
+
+SPACE COMPARISON N = 8
+
+Initial State | Ideal Steps |  h1  | h2 | h3 
+:---: | :---: | :---: | :---: | :---:
+[1, 4, 2, 3, 5, 8, 0, 6, 7] | 6 |  19 | 13  | 13  
+[1, 4, 2, 0, 5, 8, 3, 6, 7] | 7 | 25  | 15 |  24
+[1, 4, 2, 5, 0, 8, 3, 6, 7] | 8 | 40  | 21 |  26
+[1, 0, 2, 5, 4, 8, 3, 6, 7] | 9 | 56  | 30 |  22
+[1, 2, 0, 5, 4, 8, 3, 6, 7] | 10 | 73  | 32 | 27
+[1, 2, 8, 5, 4, 7, 0, 3, 6] | 14 | 478 | 44 |  101
+[4, 6, 1, 5, 0, 8, 7, 2, 3] | 20 | 9177  | 560 | 712
 
 ---
 
-TIME COMPARISSON   N = 15
-
+TIME COMPARISON   N = 15
 
 Initial State | Ideal Steps |  h1  | h2 | h3 
 :---: | :---: | :---: | :---: | :---:
@@ -141,7 +156,19 @@ Initial State | Ideal Steps |  h1  | h2 | h3
 [1, 5, 2, 3, 6, 0, 10, 7, 4, 8, 14, 11, 12, 9, 13, 15] | 10 | 0.010000944137573242  |  0.008999109268188477   |  0.014998435974121094  
 [1, 2, 10, 3, 6, 5, 7, 0, 4, 8, 14, 11, 12, 9, 13, 15] | 14 | 0.02500009536743164  |  0.013000726699829102   |  0.03399968147277832 
 
-In the end we could observe that according to the heuristic function we used, the number of states that expanded varied considerally. This is because the node that we choose to expand depends completelly in the heuristics function (h+g), also we prove that A star is a efficient algorith that is faster and more efective than BFS, ID or other not informed search. We can conclude that A star is an completeness and optimally algorithm, unfortunetly no all is great  A star algorithm still having a  big problem the memory that uses looking for the best solution still being a big number. Finally we found that yhe best heuristic is the heuristic of Manhatan distance, next the inverse heuristic and finally the box in missplace heuristic.
+SPACE COMPARISON   N = 15
+
+Initial State | Ideal Steps |  h1  | h2 | h3 
+:---: | :---: | :---: | :---: | :---:
+[1, 5, 2, 3, 4, 6, 10, 7, 8, 9, 14, 11, 12, 0, 13, 15] | 6 | 17  |  17   |  17
+[1, 5, 2, 3, 4, 6, 10, 7, 8, 0, 14, 11, 12, 9, 13, 15] | 7 | 20  |  20   |  26 
+[1, 5, 2, 3, 4, 6, 10, 7, 0, 8, 14, 11, 12, 9, 13, 15] | 8 | 28  |  22   |  28  
+[1, 5, 2, 3, 0, 6, 10, 7, 4, 8, 14, 11, 12, 9, 13, 15] | 9 | 24  |  24   |  32 
+[1, 5, 2, 3, 6, 0, 10, 7, 4, 8, 14, 11, 12, 9, 13, 15] | 10 | 36  |  30   |  43  
+[1, 2, 10, 3, 6, 5, 7, 0, 4, 8, 14, 11, 12, 9, 13, 15] | 14 |  67 |  31   |  77 
+
+
+In the end we could observe that according to the heuristic function we used, the number of states that expanded varied considerally. This is because the node that we choose to expand depends completelly in the heuristics function (h+g), also we prove that A star is a efficient algorith that is faster and more efective than BFS, ID or other not informed search. We can conclude that A star is an completeness and optimally algorithm because it finds a solution and it find the optimally solution because minimize the cost beetwen the initial state and goal state, unfortunetly no all is great  A star algorithm still having a  big problem the memory that uses looking for the best solution still being a big number. Finally we found that the best heuristic is the heuristic of Manhatan distance, next the inverse heuristic and finally the box in missplace heuristic. The heroustic that uses more space is h1 then h3 and finally h2 and the heuristic that solve the problem in shortest time is h2 then h3 then h1. All this because with Manhattan distance
 
 We use 'Live Share' extension of VSCode to develop the code.
 
