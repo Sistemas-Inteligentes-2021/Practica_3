@@ -1,17 +1,42 @@
 from queue import PriorityQueue
 import copy
 import math
+import heapq
 from numpy.lib.scimath import sqrt
+
+
+q=[(3,{1:6, 2:"daf"}), (5, {1:6, 2:"daf"}), (5,{1:6, 2:"daf"})]
+# heapq.heappush(q,(4, 'Read'))
+# heapq.heappush(q,(5, 'Play'))
+# heapq.heappush(q,(5, 'Play2'))
+# heapq.heappush(q,(2, 'Write'))
+# heapq.heappush(q,(1, 'Code'))
+# heapq.heappush(q,(7, 'Study'))
+# heapq.heappush(q,(5, 'Ad'))
+# heapq.heappush(q,(8, 'Go'))
+# heapq.heappush(q,(6, 'Test'))
+
+while  q:
+    aux=heapq.heappop(q)
+    print(aux[0], aux[1])
+
+print(q)
+
+
 # q = PriorityQueue()
 
 # q.put((4, 'Read'))
-# q.put((2, 'Play'))
+# q.put((5, 'Play'))
 # q.put((5, 'Write'))
 # q.put((1, 'Code'))
 # q.put((3, 'Study'))
 
 
-# state=q.get()
+
+# while not q.empty():
+#     next_item = q.get()
+#     print(next_item)
+
 
 # print(q.get()[0])
 
@@ -23,10 +48,6 @@ from numpy.lib.scimath import sqrt
 
 # q2.put((8, 'Brian'))
 
-
-# while not q.empty():
-#     next_item = q.get()
-#     print(next_item[1])
 
 # print("---------------------------------------------")
 
