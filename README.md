@@ -4,7 +4,7 @@
 
 ## 2. Describing the Solution
 
-To resolve the problem int his laboratory we are using A star algorithm, we will prove that A star algorithm (that is a Informed search) is better than the not informed algorithms, also we are going to use differents heuristics functions to try to get the solution in the shortest time and we are going to compare this heuristic functions and how affect the optimeless in algorithm. The first heuristic function is the number of boxes missplaced of the objetive, the second heuristics function is the summatory of manhattan distance between all boxes and finally the third heuristic is the sumatory of inverse permutations
+To solve the problem int his laboratory we are using A star algorithm, we will prove that A star algorithm (that is a Informed search) is better than the not informed algorithms, also we are going to use differents heuristics functions to try to get the solution in the shortest time and we are going to compare this heuristic functions and how affect the optimeless in algorithm. The first heuristic function is the number of boxes missplaced of the objetive, the second heuristics function is the summatory of manhattan distance between all boxes and finally the third heuristic is the sumatory of inverse permutations
 
 ## 3. Experiments & Results
 
@@ -174,9 +174,16 @@ We use 'Live Share' extension of VSCode to develop the code.
 
 ### Porotos h4 Heuristic : Euclidean Distance
 
-To develop this heurisitc function we get inspired in the las class where the Mg. Gerard explained
+To develop this heuristic function we get inspired in the las class where the Mg. Gerard explained
 
 What we do was find the euclidean distance beetwen the node visited and the goal state, we get the initial position of the element in the current node and the same position of the same element in goal state, then we substract them and get the absolute value of the substract and finally with Pitagoras equation we get the eucliden distance
+
+We afirm that this heuristic is admisible beacause:  
+1. Our nodes do not have an infinite number of successors
+2. The cost of going from one state to another is 1, in no case do we have a cost of 0
+3. Our estimation of the cost (ĥ) is less or equal than the real cost (h)
+
+With this we guaranteed than A*, with our heuristic function, is optimality and complete
 
 ### Comments
 

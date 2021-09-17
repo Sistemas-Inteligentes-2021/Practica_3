@@ -91,8 +91,7 @@ def h4(initial_state, n_parts):
             x_euclidean, y_euclidean = abs(prev_row-goal_row), abs(prev_col - goal_col)
             z_euclidean = round(sqrt((pow(x_euclidean,2) + pow(y_euclidean,2))),2)    
             euclidean_distance += z_euclidean
-    euclidean_distance = euclidean_distance * 100
-    return int(euclidean_distance)
+    return euclidean_distance
 
 # Transition function expect a state and an action and will return the possible succesor state in base of the action
 def TF(state, action,path,n):
