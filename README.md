@@ -1,10 +1,16 @@
 # Practice 3
+## Members
+
+- Daniel Camacho
+- Adrian Mendoza
+- Juslan Vargas
+
 ## 1. Describing the Problem
 - The main problem that we want to solve is the N_Puzzle, finde the best and optimally solution given and initial state and defined a Goal State
 
 ## 2. Describing the Solution
 
-To solve the problem int his laboratory we are using A star algorithm, we will prove that A star algorithm (that is a Informed search) is better than the not informed algorithms, also we are going to use differents heuristics functions to try to get the solution in the shortest time and we are going to compare this heuristic functions and how affect the optimeless in algorithm. The first heuristic function is the number of boxes missplaced of the objetive, the second heuristics function is the summatory of manhattan distance between all boxes and finally the third heuristic is the sumatory of inverse permutations
+To solve the problem in this laboratory we are using A star algorithm, we will prove that A star algorithm (that is a Informed search) is better than the not informed algorithms, also we are going to use differents heuristics functions to try to get the solution in the shortest time and we are going to compare this heuristic functions and how affect the optimeless in algorithm. The first heuristic function is the number of boxes missplaced of the objetive, the second heuristics function is the summatory of manhattan distance between all boxes and finally the third heuristic is the sumatory of inverse permutations
 
 ## 3. Experiments & Results
 
@@ -118,6 +124,7 @@ Initial State | Time(seconds) | Space States | Steps | Ideal Steps
 [1, 5, 2, 3, 0, 6, 10, 7, 4, 8, 14, 11, 12, 9, 13, 15] | 0.014999151229858398 | 31 |  9 |  9
 [1, 5, 2, 3, 6, 0, 10, 7, 4, 8, 14, 11, 12, 9, 13, 15] | 0.024000167846679688 | 47 | 10 |  10
 [1, 2, 10, 3, 6, 5, 7, 0, 4, 8, 14, 11, 12, 9, 13, 15] | 0.01923823356628418 | 38 | 14 |  14
+[1, 10, 0, 2, 6, 8, 5, 11, 14, 13, 3, 7, 4, 12, 9, 15] | 732.7299716472626 | 11219 | 30 |  30
 
 ## 4. Conclusions
 ---

@@ -250,7 +250,7 @@ def main():
         # display_path(goal_path,n_parts)                           # Remove comment to display in Grids
         print("\nNumber of steps to find the goal state are:",len(goal_path)-1)
     print("--- Time: %s seconds ---" % (time.time() - start_time))  # End Timer
-    print("\n*** For more information Remove comment line 251 (Grid) or 250 (Array) ***")
+    print("\n*** For more information Remove comment line 250 (Grid) or 249 (Array) ***")
 
 if __name__ == '__main__':
     main()
