@@ -4,9 +4,11 @@
 
 ## 2. Describing the Solution
 
-To do
+To resolve the problem int his laboratory we are using A star algorithm, we will prove that A star algorithm (that is a Informed search) is better than the not informed algorithms, also we are going to use differents heuristics functions to try to get the solution in the shortest time and we are going to compare this heuristic functions and how affect the optimeless in algorithm. The first heuristic function is the number of boxes missplaced of the objetive, the second heuristics function is the summatory of manhattan distance between all boxes and finally the third heuristic is the sumatory of inverse permutations
 
 ## 3. Experiments & Results
+
+We use the file "A_star_list_version.py" for running the experiments and saving the results, you can see an example of how we annote the data in "Print_view.png" in assets.images folder, the algorithm works with n puzzle the only thing that we need to run the program is create the csv with the name "Data_NPuzzle.csv" with the initial and goal state, finally the results that we get are:
 ### 8 Puzzle (N = 8)
 
 With Heuristic function 1:
@@ -45,7 +47,8 @@ Initial State | Time(seconds) | Space States | Steps | Ideal Steps
 [1, 2, 8, 5, 4, 7, 0, 3, 6] | 0.04492330551147461 |  101  |  14  |  14
 
 
-OPTIONAL
+*OPTIONAL
+
 With Heuristic function 4:
 
 Initial State | Time(seconds) | Space States | Steps | Ideal Steps
@@ -65,36 +68,38 @@ With Heuristic function 1:
 
 Initial State | Time(seconds) | Space States | Steps | Ideal Steps
 :---: | :---: | :---: | :---: | :---:
-[1, 5, 2, 3, 4, 6, 10, 7, 8, 9, 14, 11, 12, 0, 13, 15] | - | -  |  - |  6
-[1, 5, 2, 3, 4, 6, 10, 7, 8, 0, 14, 11, 12, 9, 13, 15] | - | -  |  - |  7
-[1, 5, 2, 3, 4, 6, 10, 7, 0, 8, 14, 11, 12, 9, 13, 15] | - | -  |  - |  8
-[1, 5, 2, 3, 0, 6, 10, 7, 4, 8, 14, 11, 12, 9, 13, 15] | - | -  |  - |  9
-[1, 5, 2, 3, 6, 0, 10, 7, 4, 8, 14, 11, 12, 9, 13, 15] | - | -  |  - |  10
-[1, 2, 10, 3, 6, 5, 7, 0, 4, 8, 14, 11, 12, 9, 13, 15] | - | -  |  - |  14
+[1, 5, 2, 3, 4, 6, 10, 7, 8, 9, 14, 11, 12, 0, 13, 15] | 0.005007028579711914 | 17 | 6 |  6
+[1, 5, 2, 3, 4, 6, 10, 7, 8, 0, 14, 11, 12, 9, 13, 15] | 0.0059986114501953125 | 20 | 7 |  7
+[1, 5, 2, 3, 4, 6, 10, 7, 0, 8, 14, 11, 12, 9, 13, 15] | 0.007999658584594727 | 28 | 8 |  8
+[1, 5, 2, 3, 0, 6, 10, 7, 4, 8, 14, 11, 12, 9, 13, 15] | 0.0070002079010009766 | 24 | 9 |  9
+[1, 5, 2, 3, 6, 0, 10, 7, 4, 8, 14, 11, 12, 9, 13, 15] | 0.010000944137573242 | 36 | 10 |  10
+[1, 2, 10, 3, 6, 5, 7, 0, 4, 8, 14, 11, 12, 9, 13, 15] | 0.02500009536743164 | 67 | 14 |  14
 
 
 With Heuristic function 2:
 
 Initial State | Time(seconds) | Space States | Steps | Ideal Steps
 :---: | :---: | :---: | :---: | :---:
-[1, 5, 2, 3, 4, 6, 10, 7, 8, 9, 14, 11, 12, 0, 13, 15] | - | -  |  - |  6
-[1, 5, 2, 3, 4, 6, 10, 7, 8, 0, 14, 11, 12, 9, 13, 15] | - | -  |  - |  7
-[1, 5, 2, 3, 4, 6, 10, 7, 0, 8, 14, 11, 12, 9, 13, 15] | - | -  |  - |  8
-[1, 5, 2, 3, 0, 6, 10, 7, 4, 8, 14, 11, 12, 9, 13, 15] | - | -  |  - |  9
-[1, 5, 2, 3, 6, 0, 10, 7, 4, 8, 14, 11, 12, 9, 13, 15] | - | -  |  - |  10
-[1, 2, 10, 3, 6, 5, 7, 0, 4, 8, 14, 11, 12, 9, 13, 15] | - | -  |  - |  14
+[1, 5, 2, 3, 4, 6, 10, 7, 8, 9, 14, 11, 12, 0, 13, 15] | 0.004999637603759766 | 17 | 6 |  6
+[1, 5, 2, 3, 4, 6, 10, 7, 8, 0, 14, 11, 12, 9, 13, 15] | 0.005998849868774414 | 20  | 7 |  7
+[1, 5, 2, 3, 4, 6, 10, 7, 0, 8, 14, 11, 12, 9, 13, 15] | 0.006999969482421875 | 22 |  8 |  8
+[1, 5, 2, 3, 0, 6, 10, 7, 4, 8, 14, 11, 12, 9, 13, 15] | 0.007999420166015625 | 24 | 9 |  9
+[1, 5, 2, 3, 6, 0, 10, 7, 4, 8, 14, 11, 12, 9, 13, 15] | 0.008999109268188477 | 30 | 10 |  10
+[1, 2, 10, 3, 6, 5, 7, 0, 4, 8, 14, 11, 12, 9, 13, 15] | 0.013000726699829102 | 38 | 14 |  14
+[1, 2, 10, 3, 6, 5, 7, 0, 4, 8, 14, 11, 12, 9, 13, 15] | 44.222795724868774 | 2832 | 30 |  30
+[1, 2, 10, 3, 6, 5, 7, 0, 4, 8, 14, 11, 12, 9, 13, 15] | 213.93165183067322 | 6120 | 31 |  31
 
 
 With Heuristic function 3:
 
 Initial State | Time(seconds) | Space States | Steps | Ideal Steps
 :---: | :---: | :---: | :---: | :---:
-[1, 5, 2, 3, 4, 6, 10, 7, 8, 9, 14, 11, 12, 0, 13, 15] | - | -  |  - |  6
-[1, 5, 2, 3, 4, 6, 10, 7, 8, 0, 14, 11, 12, 9, 13, 15] | - | -  |  - |  7
-[1, 5, 2, 3, 4, 6, 10, 7, 0, 8, 14, 11, 12, 9, 13, 15] | - | -  |  - |  8
-[1, 5, 2, 3, 0, 6, 10, 7, 4, 8, 14, 11, 12, 9, 13, 15] | - | -  |  - |  9
-[1, 5, 2, 3, 6, 0, 10, 7, 4, 8, 14, 11, 12, 9, 13, 15] | - | -  |  - |  10
-[1, 2, 10, 3, 6, 5, 7, 0, 4, 8, 14, 11, 12, 9, 13, 15] | - | -  |  - |  14
+[1, 5, 2, 3, 4, 6, 10, 7, 8, 9, 14, 11, 12, 0, 13, 15] | 0.004999637603759766 | 17 | 6 |  6
+[1, 5, 2, 3, 4, 6, 10, 7, 8, 0, 14, 11, 12, 9, 13, 15] | 0.007999658584594727 | 26 | 7 |  7
+[1, 5, 2, 3, 4, 6, 10, 7, 0, 8, 14, 11, 12, 9, 13, 15] | 0.009000539779663086 | 28  | 8 |  8
+[1, 5, 2, 3, 0, 6, 10, 7, 4, 8, 14, 11, 12, 9, 13, 15] | 0.009999752044677734 | 32 | 9 |  9
+[1, 5, 2, 3, 6, 0, 10, 7, 4, 8, 14, 11, 12, 9, 13, 15] | 0.014998435974121094 | 43 | 10 |  10
+[1, 2, 10, 3, 6, 5, 7, 0, 4, 8, 14, 11, 12, 9, 13, 15] | 0.03399968147277832 | 77 |  14 |  14
 
 
 *OPTIONAL
@@ -103,12 +108,12 @@ With Heuristic function 4:
 
 Initial State | Time(seconds) | Space States | Steps | Ideal Steps
 :---: | :---: | :---: | :---: | :---:
-[1, 5, 2, 3, 4, 6, 10, 7, 8, 9, 14, 11, 12, 0, 13, 15] | - | -  |  - |  6
-[1, 5, 2, 3, 4, 6, 10, 7, 8, 0, 14, 11, 12, 9, 13, 15] | - | -  |  - |  7
-[1, 5, 2, 3, 4, 6, 10, 7, 0, 8, 14, 11, 12, 9, 13, 15] | - | -  |  - |  8
-[1, 5, 2, 3, 0, 6, 10, 7, 4, 8, 14, 11, 12, 9, 13, 15] | - | -  |  - |  9
-[1, 5, 2, 3, 6, 0, 10, 7, 4, 8, 14, 11, 12, 9, 13, 15] | - | -  |  - |  10
-[1, 2, 10, 3, 6, 5, 7, 0, 4, 8, 14, 11, 12, 9, 13, 15] | - | -  |  - |  14
+[1, 5, 2, 3, 4, 6, 10, 7, 8, 9, 14, 11, 12, 0, 13, 15] | 9.011703729629517 | 1401 | 84 |  6
+[1, 5, 2, 3, 4, 6, 10, 7, 8, 0, 14, 11, 12, 9, 13, 15] | 5.000791072845459 | 1025 | 187 |  7
+[1, 5, 2, 3, 4, 6, 10, 7, 0, 8, 14, 11, 12, 9, 13, 15] | 7.791049480438232 | 1280 | 284 |  8
+[1, 5, 2, 3, 0, 6, 10, 7, 4, 8, 14, 11, 12, 9, 13, 15] | 58.83189272880554 | 3507 |  335 |  9
+[1, 5, 2, 3, 6, 0, 10, 7, 4, 8, 14, 11, 12, 9, 13, 15] | 31.155179262161255 | 2558 | 384 |  10
+[1, 2, 10, 3, 6, 5, 7, 0, 4, 8, 14, 11, 12, 9, 13, 15] | 42.99076700210571 | 2948 | 720 |  14
 ## 4. Conclusions
 ---
 Time Comparassion   N = 8
@@ -129,14 +134,14 @@ TIME COMPARISSON   N = 15
 
 Initial State | Ideal Steps |  h1  | h2 | h3 
 :---: | :---: | :---: | :---: | :---:
-[1, 5, 2, 3, 4, 6, 10, 7, 8, 9, 14, 11, 12, 0, 13, 15] | - |  -  |  - | -
-[1, 5, 2, 3, 4, 6, 10, 7, 8, 0, 14, 11, 12, 9, 13, 15] | - |  -  |  - |  -
-[1, 5, 2, 3, 4, 6, 10, 7, 0, 8, 14, 11, 12, 9, 13, 15] | - |  -  |  - |  -
-[1, 5, 2, 3, 0, 6, 10, 7, 4, 8, 14, 11, 12, 9, 13, 15] | - |  -  |  - |  -
-[1, 5, 2, 3, 6, 0, 10, 7, 4, 8, 14, 11, 12, 9, 13, 15] | - |  -  |  - |  -
-[1, 2, 10, 3, 6, 5, 7, 0, 4, 8, 14, 11, 12, 9, 13, 15] | - |  -  |  - |  -
+[1, 5, 2, 3, 4, 6, 10, 7, 8, 9, 14, 11, 12, 0, 13, 15] | 6 | 0.005007028579711914  |  0.004999637603759766   |  0.004999637603759766  
+[1, 5, 2, 3, 4, 6, 10, 7, 8, 0, 14, 11, 12, 9, 13, 15] | 7 | 0.0059986114501953125  |  0.005998849868774414   |  0.007999658584594727 
+[1, 5, 2, 3, 4, 6, 10, 7, 0, 8, 14, 11, 12, 9, 13, 15] | 8 | 0.007999658584594727  |  0.006999969482421875   |  0.009000539779663086  
+[1, 5, 2, 3, 0, 6, 10, 7, 4, 8, 14, 11, 12, 9, 13, 15] | 9 | 0.0070002079010009766  |  0.007999420166015625   |  0.009999752044677734 
+[1, 5, 2, 3, 6, 0, 10, 7, 4, 8, 14, 11, 12, 9, 13, 15] | 10 | 0.010000944137573242  |  0.008999109268188477   |  0.014998435974121094  
+[1, 2, 10, 3, 6, 5, 7, 0, 4, 8, 14, 11, 12, 9, 13, 15] | 14 | 0.02500009536743164  |  0.013000726699829102   |  0.03399968147277832 
 
-In the end we could observe that according to the heuristic function we used, the number of states that expanded varied considerally. This is because the node that we choose to expand depends completelly in the heuristics function (h+g), also we prove that A star is a efficient algorith that is faster and more efective than BFS, ID or other not informed search. We can conclude that A star is an completeness and optimally algorithm. The best heuristic is the heuristic of Manhatan distance, next the inverse heuristic and finally the box in missplace heuristic.
+In the end we could observe that according to the heuristic function we used, the number of states that expanded varied considerally. This is because the node that we choose to expand depends completelly in the heuristics function (h+g), also we prove that A star is a efficient algorith that is faster and more efective than BFS, ID or other not informed search. We can conclude that A star is an completeness and optimally algorithm, unfortunetly no all is great  A star algorithm still having a  big problem the memory that uses looking for the best solution still being a big number. Finally we found that yhe best heuristic is the heuristic of Manhatan distance, next the inverse heuristic and finally the box in missplace heuristic.
 
 We use 'Live Share' extension of VSCode to develop the code.
 
@@ -148,7 +153,7 @@ What we do was find the euclidean distance beetwen the node visited and the goal
 
 ### Comments
 
-When we are developing the algorithm we get noticed that the priority queue librarie that python documentation give has not the problem that we experimented, we used both libraries thinking that the problem may be just one, but we have the same issue, we really try to find a way to solve the problem looking at forums like in stack overflow, github or looking for examples with that library but we didnt solve anything at the end we just simply decided to use a list and make a function to pick the best heuristic and we did that, the algorithm that we used for a star was the algorithm that we saw in classes and we comprobe it looking for another algorithm and we found the same.
+When we are developing the algorithm we get noticed that the priority queue librarie that python documentation give has not the problem that we experimented, we used both libraries thinking that the problem may be just one, but we have the same issue (the issue can see it in assets images "Error heap.png" and "Error Priority queue.png"), we really try to find a way to solve the problem looking at forums like in stack overflow, github or looking for examples with that library but we didnt solve anything at the end we just simply decided to use a list and make a function to pick the best heuristic and we did that, the algorithm that we used for a star was the algorithm that we saw in classes and we comprobe it looking for another algorithm and we found the same.
 
 We use 'Live Share' extension of VSCode to develop the code.
 
@@ -167,11 +172,15 @@ Lo que hicimos fue obtener la posicion inicial del elemento y la posicion del mi
 
 ➡️  Priority Queue: [Python Docs][heapq]
 
+➡️  A* Algorithm: [Medium][a_star_algorithm]
+
 
 [miro]: https://miro.com/welcomeonboard/YWcxVk5zcnNsRTVPOFlsaVZlTnhCdzU1MjNzU3VMbnJHOFdadndBOVV6TVBwY29GOXNZbjg5QndkNTc3OTZnc3wzMDc0NDU3MzQ5MzA5MzU1OTMx
 
 [copy_queue]: https://stackoverflow.com/questions/32488533/how-to-clone-a-queue-in-python
 
 [priority_queue]: https://docs.python.org/3/library/asyncio-queue.html
+
 [heapq]: https://docs.python.org/3/library/heapq.html
 
+[a_star_algorithm]: https://medium.com/@nicholas.w.swift/easy-a-star-pathfinding-7e6689c7f7b2

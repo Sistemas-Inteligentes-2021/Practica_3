@@ -175,8 +175,8 @@ def A_star(initial_state, actions, goal_state,n, n_parts):
                 
                 if list_in_lists(sucessor.list,closed):
                     continue
-                #sucessor.h=h1(sucessor.list,goal_state,n) #Aqui va nuestra funcion heuristica
-                sucessor.h=h2(sucessor.list,n_parts) #Aqui va nuestra funcion heuristica
+                sucessor.h=h1(sucessor.list,goal_state,n) #Aqui va nuestra funcion heuristica
+                #sucessor.h=h2(sucessor.list,n_parts) #Aqui va nuestra funcion heuristica
                 #sucessor.h=h3(sucessor.list) #Aqui va nuestra funcion heuristica
                 #sucessor.h=h4(sucessor.list,n_parts) #Aqui va nuestra funcion heuristica                
                 sucessor.g=state.g+1
